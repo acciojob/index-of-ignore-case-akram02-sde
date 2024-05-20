@@ -1,12 +1,23 @@
 function indexOfIgnoreCase(s1, s2) {
     // write your code here
-    let s1 = s1.toLowerCase()
-    let s2 = s2.toLowerCase()
+    let i = 0;
+    let flag = false; 
 
-    if(s1.includes(s2)){
-        return s1.indexOf(s2)
+    for (let j = 0; j < s1.length; j++) {
+        if (s1.toLowerCase().charAt(j) === s2.toLowerCase().charAt(i)) {
+            i++; 
+        } else {
+            j -= i; 
+            i = 0; 
+        }
+
+        if (i === s2.length) { 
+            flag = true; 
+            return j - i + 1 
+        }
     }
-    else{
+
+    if (!flag) {
         return -1
     }
 }
